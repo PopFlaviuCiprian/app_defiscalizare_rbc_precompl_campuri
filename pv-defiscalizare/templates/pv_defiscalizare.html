@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PROCES VERBAL</title>
+    <link rel="stylesheet" href="/static/pv_defiscalizare.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.0/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.25.0/docxtemplater.js"></script>
+    <style>
+        /* Ascunde butoanele la imprimare */
+        @media print {
+            #salveaza_pdf, #imprima, button[type='button'] {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="document">
+        <div class="a4" style="page-break-after: always">
+            <h1>Proces Verbal</h1>
+            <p class="subtitlu">Incheiat astazi <input type="date" style="width: 120px; font-size: 16px;"></p>
+
+            <form id="formPV" method="POST">
+                <p class="paragraf">
+                    Prezentul proces  verbal  s-a  intocmit  in  baza OG 28/1999, art.4, aliniatul 5, a HG nr.479  din 18 aprilie 2003,
+                    republicat,  privind aprobarea  Normelor  metodologice de aplicarea  Ordonantei  de  urgenta  a  Guvernului  nr.28/1999  si  OUG 91/2014
+                    din  31 decembrie  2014  pentru  modificarea  si  completarea  OUG 28/1999  privind  obligatia  operatorilor  economici de  a   utiliza
+                    aparate   de   marcat   electronice   fiscale.
+                </p>
+
+                <p class="inputuri">
+                    Prezentul proces verbal s-a intocmit intre S.C. ROMANIAN BUSINESS CONSULT S.R.L. , reprezentat prin
+                    <input type="text" name="nume" placeholder="Reprezentant RBC" style="width: 200px; font-size: 16px"> posesor al C.I. seria:
+                    <input type="text" name="serie" placeholder="SM" style="width: 40px; font-size: 16px"> Nr:
+                    <input type="text" name="numar" placeholder="serie" style="width: 65px; font-size: 16px"> si
+                    <input list="clientDropdown" id="nume_companie" name="nume_companie" placeholder="Nume Companie" style="width: 300px; font-size: 16px">
+                    <datalist id="clientDropdown"></datalist> cu punctul de lucru in:
+                    <input list="adresaDropdown" id="adresa" name="adresa" placeholder="Adresa punct lucru" style="width: 400px; font-size: 16px">
+                    <datalist id="adresaDropdown"></datalist>, avand codul fiscal:
+                    <input type="text" name="cod_fiscal" placeholder="Cod fiscal" style="width: 110px; font-size: 16px"> reprezentat prin
+                    <input type="text" name="nume_reprezentant" placeholder="Reprezentant beneficiar" style="width: 170px; font-size: 16px; ">, in calitate de imputernicit , posesor al C.I. seria:
+                    <input type="text" name="serie_beneficiar" placeholder="SM" style="width: 40px; font-size: 16px"> Nr.
+                    <input type="text" name="numar_beneficiar" placeholder="serie" style="width: 65px; font-size: 16px">
+                    ca urmare a predarii memoriei fiscale CONFORM ANEXA.
+                </p>
+
+                <p class="info_imprimanta">
+                    Casa de marcat a fost importata de S.C. ROMANIAN BUSINESS CONSULT S.R.L. si distribuita de S.C. ROMANIAN BUSINESS CONSULT S.R.L.
+                    in baza avizului de distributie nr :
+                    <input type="text" name="aviz_distributie" placeholder="Aviz Distributie" style="width: 170px; font-size: 16px"><br>
+                    Starea tehnica a memoriei fiscale:
+                    <input type="text" name="stare_imprimanta" placeholder="Integra/Deteriorata" style="width: 170px; font-size: 16px"><br>
+                    Motivul predarii :
+                    <input type="text" name="motiv_predare" placeholder="Motiv predare" style="width: 200px; font-size: 16px"><br>
+                    Marca :
+                    <input type="text" name="marca" placeholder="Marca" style="width: 100px; font-size: 16px"><br>
+                    Modelul :
+                    <input type="text" name="model" placeholder="Model imprimanta" style="width: 200px; font-size: 16px"><br>
+                        <p style="font-weight: bold; text-align: left; font-size: 20px"><u>Nota:</u></p>
+                        <p style="text-align: justify; text-indent: 45px; line-height: 1.7; font-size: 16px;">
+                            Conform OUG 91/2014 operatorii economici care utilizeaza aparate de marcat electronice fiscale la umplerea memoriei fiscale ,
+                            atunci cand aceasta trebuie inlocuita ca urmare a defectarii, ori cand nu mai poate fi folosita de catre utilizatori din diverse motive,
+                            precum si in cazul in care acestia isi inceteaza activitatea ,
+                            sunt obligati sa asigure pastrarea si arhivarea memoriilor fiscale pentru o perioada de 10 ani.
+                        </p>
+                </p>
+                <div class="semnaturi_pag1">
+                    <div class="semnatura_beneficiar"><br>
+                        Societate Comerciala<br>
+                        Semnatura<br>................................
+                    </div>
+                    <div class="semnatura_service"><br>
+                        Unitate Service Acreditata<br>
+                        Semnatura<br>................................
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="a4">
+            <p class="subtitle2" style="font-weight: bold; text-align: left"><u>-- ANEXA --</u></p>
+                <div>
+                    <table contenteditable="true" class="tabel" border="1" style="margin-top: 50px; font-size: 14.5px; ">
+                        <thead>
+                            <tr>
+                                <th>Nr</th>
+                                <th>Serie imprimanta fiscala</th>
+                                <th>Nr. De Ordine D.G.F.P.</th>
+                                <th>Serie Fiscala Imprimanta</th>
+                                <th>Nr. Ultimului Raport Z</th>
+                                <th>Total Vanzari (lei)</th>
+                                <th>Total TVA(lei)</th>
+                                <th colspan="2">
+                                    Integritatea sigilii inainte de desigilare <br>
+                                    <span class="mic", style="font-size: 8px; display: flex">Carcasa intacta-Memorie intacta</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"> </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"> </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"> </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"> </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"></td>
+                                <td style="height: 20px; text-align: center"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            <div class="semnaturi_pag2">
+                <div class="semnatura_beneficiar2"><br>
+                    Societate Comerciala<br>
+                    Semnatura<br>................................
+                </div>
+                <div class="semnatura_service2"><br>
+                    Unitate Service Acreditata<br>
+                    Semnatura<br>................................
+                </div>
+            </div>
+            <div class="container_butoane">
+                <button type="button" id="salveaza_pdf">Salvează PDF</button>
+                <button type="button" id="imprima">Imprimă</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ascunde butoanele pentru PDF la imprimare
+            var salveazaPdfButton = document.getElementById("salveaza_pdf");
+            var imprimaButton = document.getElementById("imprima");
+
+            function hideButtons() {
+                salveazaPdfButton.style.display = 'none';
+                imprimaButton.style.display = 'none';
+            }
+
+            function showButtons() {
+                salveazaPdfButton.style.display = 'inline-block';
+                imprimaButton.style.display = 'inline-block';
+            }
+
+            salveazaPdfButton.addEventListener("click", function () {
+                hideButtons();
+                const element = document.getElementById("document");
+                const opt = {
+                margin: [3, 3, 3, 5],
+                filename: 'pv_defiscalizare_rbc.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+                html2pdf().from(element).set(opt).save().then(function () {
+                    showButtons();
+                });
+            });
+
+            imprimaButton.addEventListener("click", function () {
+                hideButtons();
+                window.print(); // Deschide fereastra de imprimare
+                setTimeout(function () {
+                    showButtons();
+                }, 1000); // Reîntoarce butoanele după un scurt delay
+            });
+        });
+
+        window.addEventListener("beforeunload", function () {
+            navigator.sendBeacon("/shutdown");
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const clientDropdown = document.getElementById("clientDropdown");
+            const adresaDropdown = document.getElementById("adresaDropdown");
+            const numeCompanieInput = document.getElementById("nume_companie");
+            const adresaInput = document.getElementById("adresa");
+            const codFiscalInput = document.querySelector("input[name='cod_fiscal']");
+            const avizDistributieInput = document.querySelector("input[name='aviz_distributie']");
+            const marcaInput = document.querySelector("input[name='marca']");
+            const modelInput = document.querySelector("input[name='model']");
+
+            numeCompanieInput.addEventListener("input", async function () {
+                const query = numeCompanieInput.value.trim();
+                if (query.length < 2) return;
+
+                const response = await fetch(`/api/clienti?q=${query}`);
+                const clients = await response.json();
+
+                clientDropdown.innerHTML = "";
+                clients.forEach(client => {
+                    const option = document.createElement("option");
+                    option.value = client["Nume_Companie"];
+                    clientDropdown.appendChild(option);
+                });
+            });
+
+            numeCompanieInput.addEventListener("change", async function () {
+                const clientName = numeCompanieInput.value;
+                if (!clientName) return;
+
+                const response = await fetch(`/get_client_data?q=${clientName}`);
+                const client = await response.json();
+
+                if (client) {
+                    codFiscalInput.value = client.Cod_Fiscal;
+                    avizDistributieInput.value = client.Aviz_Distributie;
+                    marcaInput.value = client.Marca;
+                    modelInput.value = client.Model;
+
+                    adresaDropdown.innerHTML = "";
+                    client.Adrese.forEach(adresa => {
+                        const option = document.createElement("option");
+                        option.value = adresa;
+                        adresaDropdown.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

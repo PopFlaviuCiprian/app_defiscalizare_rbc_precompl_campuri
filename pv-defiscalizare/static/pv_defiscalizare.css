@@ -1,0 +1,166 @@
+/* Stiluri generale */
+
+.body {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: block;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.a4 {
+    font-family: Arial, sans-serif;
+    width: 210mm;
+    /*height: 297mm;*/ /* am dezactivat asta sa imi puna paginile un dupa alta*/
+    padding: 10mm;
+    /*white-space: normal;*/
+    margin-right: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    page-break-after: always;
+    page-break-inside: auto; /* Permite împărțirea paginilor */
+    text-align: center;
+}
+
+.a4:last-child {
+    page-break-after: auto;
+}
+
+.subtitlu {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-weight: normal;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+    .a4 {
+        box-shadow: none;
+        overflow: visible;
+        margin: 0;
+        padding: 0;
+        page-break-inside: auto; /* Permite împărțirea paginilor */
+    }
+    /* Ascunde butoanele la imprimare */
+    button, #salveaza_pdf, #imprima {
+        display: none !important;
+    }
+}
+
+.paragraf {
+    font-family: Arial, sans-serif;
+    text-align: justify;
+    background-color: white;
+    text-indent: 45px;
+    line-height: 1.7;
+    font-size: 16px;
+    /*margin-bottom: 5px;*/
+}
+
+.inputuri {
+    font-family: Arial, sans-serif;
+    /*line-height: 1.5;*/
+    text-align: justify;
+    background-color: white;
+    text-indent: 45px;
+    line-height: 1.7;
+    font-size: 16px;
+    border: none;
+    box-sizing: border-box;
+    /*padding: 5px;*/
+    /*margin-bottom: 5px;*/
+}
+
+.info_imprimanta {
+    text-align: justify;
+    line-height: 1.7; /* distanta dintre randuri*/
+    text-indent: 45px;
+}
+
+.semnaturi_pag1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;*/
+}
+
+.semnatura_beneficiar, .semnatura_service {
+    text-align: left;
+}
+
+/* Pagina 2 */
+
+
+/*
+.a4_pag2 {
+    page-break-inside: avoid; Evită împărțirea tabelului în mijloc
+    /*page-break-after: always; ntrerupe pagina după acest div
+    page-break-before: always; } */
+
+
+
+.tabel {
+    /*width: 70%; */
+    border-collapse: collapse;
+    margin-top: 20px;
+    max-height: 500px;
+    overflow: auto;
+    /*tabel-layout: fixed;*/
+}
+
+th, td {
+    padding: 8px;  /* pentru a face celulele mai ușor de citit */
+    text-align: center;  /* Aliniază textul în centrul celulelor */
+}
+
+.semnaturi_pag2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 500px;
+}
+
+.semnatura_beneficiar2, .semnatura_service2 {
+    text-align: left;
+}
+
+.container_butoane {
+    align-items: center;      /* Centrează butoanele pe verticală */
+    margin: 0;
+    margin-bottom: 20px;
+
+}
+
+/* Stiluri pentru butoane */
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /*margin-top: 5px;*/
+    text-align: left;
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
