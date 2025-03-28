@@ -53,11 +53,11 @@ def search_clients():
     ]
     return jsonify(filtered_clients)
 
-@app.route("/shutdown", methods=["POST"])
-def shutdown():
-    #Oprește serverul
-     os.kill(os.getpid(), signal.SIGTERM)
-     return "Server stopped."
+# @app.route("/shutdown", methods=["POST"])
+# def shutdown():
+#     #Oprește serverul
+#      os.kill(os.getpid(), signal.SIGTERM)
+#      return "Server stopped."
 
 def open_browser():
     webbrowser.open("http://127.0.0.1:5000/")
